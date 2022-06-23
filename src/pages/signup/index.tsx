@@ -13,34 +13,40 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "../../helpers/resolvers/signupSchema";
+import { UsePostRequest } from "../../api/axiosConfig";
 
-// enum roleEnum {
-//   teacher,
-//   student,
-// }
+enum userType {
+  student = "Student",
+  teacher = "Teacher",
+}
 
-interface IFormInput {
-  email: String;
+interface SignUpData {
+  email: string;
   password: string;
-  fullname: string;
-  role: string;
+  userType: any;
+  fullName: string;
 }
 
 const Index: React.FC = () => {
   const {
     register,
     handleSubmit,
-    
+
     formState: { errors },
-  } = useForm ({
+  } = useForm<SignUpData>({
     resolver: yupResolver(signupSchema),
   });
 
-  const onSubmit = (data:any) => console.log(data);
+  const { loading, postRequest } = UsePostRequest();
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+    postRequest("/user/create", data, "/login");
+  };
 
   return (
     <>
-      {/* <Loader bg="rgba(0 0 0/0.8)" /> */}
+      {loading && <Loader bg="rgba(0 0 0/0.8)" />}
       <Wrapper title="Signup">
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputBox>
@@ -70,16 +76,18 @@ const Index: React.FC = () => {
               margin="7px 0px"
               placeholder="Enter your full name"
               type="text"
-              {...register("fullname")}
+              {...register("fullName")}
             />
           </InputBox>
 
           <InputBox>
             <Label>What is your role</Label>
-            <Select margin="7px 0px" {...register("role")}>
-              <Option disabled selected >--Select an option--</Option>
-              <Option>Teacher</Option>
-              <Option>Student</Option>
+            <Select margin="7px 0px" {...register("userType")}>
+              <Option disabled selected>
+                --Select an option--
+              </Option>
+              <Option>{userType.teacher}</Option>
+              <Option>{userType.student}</Option>
             </Select>
           </InputBox>
 

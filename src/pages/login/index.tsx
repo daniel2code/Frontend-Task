@@ -5,6 +5,7 @@ import { Form, InputBox } from "./login.styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../helpers/resolvers/loginSchema";
+import { UsePostRequest } from "../../api/axiosConfig";
 
 const Index: React.FC = () => {
   const {
@@ -16,11 +17,18 @@ const Index: React.FC = () => {
     resolver: yupResolver(loginSchema),
   });
 
+  const { postRequest, loading } = UsePostRequest();
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+    postRequest("/user/login", data, null);
+  };
+
   return (
     <>
-      {/* <Loader bg="rgba(0 0 0/0.8)" /> */}
+      {loading && <Loader bg="rgba(0 0 0/0.8)" />}
       <Wrapper title="Login">
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <InputBox>
             <Label>Email address</Label>
             <Input

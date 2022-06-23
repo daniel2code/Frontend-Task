@@ -4,7 +4,7 @@ export const signupSchema = yup
   .object({
     email: yup.string().email().required(),
     password: yup.string().required(),
-    fullname: yup.string().required(),
-    role: yup.string().required(),
+    fullName: yup.string().required(),
+    userType: yup.string().required(),
   })
   .required();
