@@ -12,28 +12,30 @@ interface Props {
   type?: string;
 }
 
-const InputHelper: React.FC<Props> = ({
-  className,
-  children,
-  value,
-  onChange,
-  name,
-}) => {
-  return (
-    <select value={value} onChange={onChange} name={name} className={className}>
-      {children}
-    </select>
-  );
-};
+// const SelectHelper: React.FC<Props> = ({
+//   className,
+//   children,
+//   value,
+//   onChange,
+//   name,
+// }) => {
 
-export default InputHelper;
+const SelectHelper = React.forwardRef<HTMLSelectElement, Props>(
+  (props, ref) => {
+    return <select ref={ref} {...props}></select>;
+  }
+);
+
+export default SelectHelper;
 
 interface OptionProp {
   color?: string;
   children?: any;
   className?: string;
+  disabled?: boolean;
+  selected?: boolean;
 }
 
-export const OptionHelper: React.FC<OptionProp> = ({ children }) => {
-  return <option>{children}</option>;
+export const OptionHelper: React.FC<OptionProp> = ({ children }, props) => {
+  return <option {...props} >{children}</option>;
 };

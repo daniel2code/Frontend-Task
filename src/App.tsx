@@ -2,7 +2,7 @@ import React from "react";
 import GlobalStyle from "./helpers/global";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./helpers/theme";
-import Login from "./pages/signup";
+import RouteConfig from "./routesConfig/routes";
 
 const App: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
 
-        <Login />
+        <RouteConfig />
       </ThemeProvider>
     </>
   );

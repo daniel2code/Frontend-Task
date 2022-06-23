@@ -1,7 +1,14 @@
-import React from 'react'
+import { Routes, Route } from "react-router-dom";
+import { Home, Login, SignUp } from "../pages";
 
-export const routes = () => {
+ const RoutesConfig = () => {
   return (
-    <div>routes</div>
-  )
-}
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+    </Routes>
+  );
+};
+
+export default RoutesConfig

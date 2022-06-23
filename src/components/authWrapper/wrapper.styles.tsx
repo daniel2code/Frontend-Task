@@ -14,18 +14,17 @@ export const Container = styled.div`
       font-size: ${({ theme }) => theme.fontSizes.large};
       color: ${({ theme }) => theme.colors.secondary};
 
-      @media screen and (max-width: 600px){
+      @media screen and (max-width: 600px) {
         font-size: 35px;
-    }
-    }
-
-    .content{
-        margin-top: 25px;
+      }
     }
 
+    .content {
+      margin-top: 25px;
+    }
 
-    @media screen and (max-width: 600px){
-        width: 93%;
+    @media screen and (max-width: 600px) {
+      width: 93%;
     }
   }
 `;

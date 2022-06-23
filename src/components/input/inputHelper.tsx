@@ -10,26 +10,11 @@ interface Props {
   value?: string | number;
   name?: string;
   type?: string;
+  others?: any;
 }
 
-const InputHelper: React.FC<Props> = ({
-  placeholder,
-  className,
-  onChange,
-  value,
-  name,
-  type,
-}) => {
-  return (
-    <input
-      onChange={onChange}
-      value={value}
-      name={name}
-      type={type}
-      placeholder={placeholder}
-      className={className}
-    />
-  );
-};
+const InputHelper = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
+  return <input {...props} ref={ref} />;
+});
 
 export default InputHelper;

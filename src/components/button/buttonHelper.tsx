@@ -21,11 +21,10 @@ interface Props {
 const ButtonHelper: React.FC<Props> = ({
   className,
   children,
-  onClick,
   disabled,
 }) => {
   return (
-    <button onClick={onClick} className={className} disabled={disabled}>
+    <button className={className} disabled={disabled}>
       {children}
     </button>
   );
