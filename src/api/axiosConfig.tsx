@@ -22,7 +22,7 @@ export const UsePostRequest = () => {
       toast.success(successMessage, {
         className: "suc",
       });
-      
+
       setTimeout(() => {
         setSuccessMessage("");
       }, 2000);
@@ -54,9 +54,8 @@ export const UsePostRequest = () => {
       console.log(user);
       setLoading(false);
       setSuccessMessage("Success");
-      setTimeout(() => {
-        navigate(push);
-      }, 1500);
+      navigate(push);
+      
     } catch (err: any) {
       console.log(err.response);
       setErrorMessage(err.response.data.message);
