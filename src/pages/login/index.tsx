@@ -1,19 +1,16 @@
 import React from "react";
 
 import { Button, Input, Wrapper, Label, Loader } from "../../components";
-import { Form, InputBox } from "./login.styles";
+import { Form, InputBox, ActionText } from "./login.styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../helpers/resolvers/loginSchema";
 import { UsePostRequest } from "../../api/axiosConfig";
+import { ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Index: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
@@ -21,7 +18,13 @@ const Index: React.FC = () => {
 
   const onSubmit = (data: any) => {
     console.log(data);
-    postRequest("/user/login", data, null);
+    postRequest(
+      "/user/login",
+      data,
+      "You have successfully logged in",
+      "/home"
+    );
+    reset();
   };
 
   return (
@@ -49,9 +52,18 @@ const Index: React.FC = () => {
             />
           </InputBox>
 
+          <ActionText>
+            Don't have an account?{" "}
+            <Link to="/" className="link">
+              Sign up
+            </Link>
+          </ActionText>
+
           <Button margin="40px 0px">Log in</Button>
         </Form>
       </Wrapper>
+
+      <ToastContainer style={{ height: "52px" }} />
     </>
   );
 };

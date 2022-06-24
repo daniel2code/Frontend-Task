@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Form, InputBox } from "./signup,styles";
+import { Form, InputBox, ActionText } from "./signup,styles";
 import {
   Wrapper,
   Button,
@@ -14,10 +14,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "../../helpers/resolvers/signupSchema";
 import { UsePostRequest } from "../../api/axiosConfig";
+import { ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
 
 enum userType {
-  student = "Student",
-  teacher = "Teacher",
+  student = "student",
+  teacher = "teacher",
 }
 
 interface SignUpData {
@@ -28,12 +30,7 @@ interface SignUpData {
 }
 
 const Index: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-
-    formState: { errors },
-  } = useForm<SignUpData>({
+  const { register, reset, handleSubmit } = useForm<SignUpData>({
     resolver: yupResolver(signupSchema),
   });
 
@@ -41,7 +38,13 @@ const Index: React.FC = () => {
 
   const onSubmit = (data: any) => {
     console.log(data);
-    postRequest("/user/create", data, "/login");
+    postRequest(
+      "/user/create",
+      data,
+      "You have successfully signed up",
+      "/login"
+    );
+    reset();
   };
 
   return (
@@ -91,9 +94,17 @@ const Index: React.FC = () => {
             </Select>
           </InputBox>
 
+          <ActionText>
+            Have an account?{" "}
+            <Link to="/login" className="link">
+              Login
+            </Link>
+          </ActionText>
+
           <Button margin="40px 0px">Sign Up</Button>
         </Form>
       </Wrapper>
+      <ToastContainer style={{ height: "52px" }} />
     </>
   );
 };

@@ -1,5 +1,6 @@
-import Home from "./home";
-import SignUp from "./signup";
-import Login from "./login";
+import Home from "./home/index";
+import SignUp from "./signup/index";
+import Login from "./login/index";
+import Dashboard from "./dummy/index";
 
-export { Home, SignUp, Login };
+export { Home, Login, Dashboard, SignUp };

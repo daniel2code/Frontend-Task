@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import "./styles.css";
 
 interface Props {
@@ -7,13 +6,6 @@ interface Props {
 }
 
 const Index: React.FC<Props> = ({ bg }) => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setTimeout(() => {
-      navigate("/signup");
-    }, 3000);
-  }, []);
 
   return (
     <div className="container" style={{ backgroundColor: bg }}>

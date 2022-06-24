@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, SignUp } from "../pages";
+import { Login, SignUp, Dashboard } from "../pages";
 
- const RoutesConfig = () => {
+const RoutesConfig = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
+      <Route path="/home" element={<Dashboard />} />
     </Routes>
   );
 };
 
-export default RoutesConfig
+export default RoutesConfig;
