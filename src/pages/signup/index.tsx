@@ -14,7 +14,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "../../helpers/resolvers/signupSchema";
 import { UsePostRequest } from "../../api/axiosConfig";
-import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 
 enum userType {
@@ -37,7 +36,6 @@ const Index: React.FC = () => {
   const { loading, postRequest } = UsePostRequest();
 
   const onSubmit = (data: any) => {
-    console.log(data);
     postRequest(
       "/user/create",
       data,
@@ -104,7 +102,6 @@ const Index: React.FC = () => {
           <Button margin="40px 0px">Sign Up</Button>
         </Form>
       </Wrapper>
-      <ToastContainer style={{ height: "52px" }} />
     </>
   );
 };

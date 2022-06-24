@@ -19,9 +19,9 @@ export const UsePostRequest = () => {
 
   useEffect(() => {
     if (successMessage !== "") {
-      toast.success(successMessage, {
-        className: "suc",
-      });
+      // toast.success(successMessage, {
+      //   className: "suc",
+      // });
 
       setTimeout(() => {
         setSuccessMessage("");
@@ -51,11 +51,12 @@ export const UsePostRequest = () => {
         data: values,
       });
 
-      console.log(user);
+      document.cookie = `${user?.data?._id}`
+
+      console.log(user?.data?._id);
       setLoading(false);
       setSuccessMessage("Success");
       navigate(push);
-      
     } catch (err: any) {
       console.log(err.response);
       setErrorMessage(err.response.data.message);

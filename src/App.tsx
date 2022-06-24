@@ -3,8 +3,9 @@ import GlobalStyle from "./helpers/global";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./helpers/theme";
 import RouteConfig from "./routesConfig/routes";
-import 'react-toastify/dist/ReactToastify.css';
-import "./App.css"
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <GlobalStyle />
 
         <RouteConfig />
+        <ToastContainer style={{ height: "52px" }} />
       </ThemeProvider>
     </>
   );

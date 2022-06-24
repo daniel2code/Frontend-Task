@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../helpers/resolvers/loginSchema";
 import { UsePostRequest } from "../../api/axiosConfig";
-import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 
 const Index: React.FC = () => {
@@ -17,7 +16,6 @@ const Index: React.FC = () => {
   const { postRequest, loading } = UsePostRequest();
 
   const onSubmit = (data: any) => {
-    console.log(data);
     postRequest(
       "/user/login",
       data,
@@ -63,7 +61,6 @@ const Index: React.FC = () => {
         </Form>
       </Wrapper>
 
-      <ToastContainer style={{ height: "52px" }} />
     </>
   );
 };
